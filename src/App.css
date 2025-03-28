@@ -1,0 +1,41 @@
+#root {
+  margin: 0 auto;
+}
+
+body{
+  background-color: #242424;
+}
+button{
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  cursor:pointer;
+}
+button:hover{
+  border: solid, black;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.centerText{
+  text-align: center;
+}
+
+h1, h2, h3, h4, button, p {
+  color: white;
+}
+
+button{
+  background-color: #343DE9;
+}
+
+ul, li {
+  padding: 0;
+}
+
+.FormIngresoGastos__Contenedor{
+display: grid;
+gap: 40px;
+}

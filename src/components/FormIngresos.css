@@ -1,0 +1,11 @@
+.buttonFormIngresos{
+    font-size: medium;
+}
+.formIngresosGastos{
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    background-color: #363636;
+    border-radius: 10px;
+    padding: 20px;
+}

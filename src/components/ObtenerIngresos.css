@@ -1,0 +1,25 @@
+.IngresosContainer{
+    display: grid;
+    gap: 30px;
+    list-style: none;
+}
+
+.ingresosSelect {
+    display: flex;
+    gap: 10px;
+}
+
+@media(max-width: 700px) {
+    .ingresosSelect {
+        display: grid;
+        gap: 10px;
+    }
+}
+
+.ingresosSelect select {
+    width: 300px;
+}
+
+.logForm{
+margin-top: 40px;
+}

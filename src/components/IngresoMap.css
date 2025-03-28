@@ -1,0 +1,10 @@
+.ingresoContainer{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: white;
+    background-color:#363636 ;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px;
+}

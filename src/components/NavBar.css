@@ -1,0 +1,19 @@
+.navegacion {
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.btnLogOut{
+    cursor: pointer;
+    color: white;
+    background-color: grey;
+}
+
+.btnLogOut:hover{
+    background-color: red;
+}
