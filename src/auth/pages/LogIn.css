@@ -10,25 +10,17 @@
     }
 }
 
-.logForm{
-    display: grid;
-    justify-content: center;
-    gap: 10px;
-    background-color: #363636;
-    border-radius: 10px;
-    padding: 20px;
-}
+
 
 .buttonForm {
     background-color: #343DE9;
 }
 
-.buttonForm:hover{
-    background-color: rgb(0, 204, 255);
-}
+
 
 .btnPagina{
-    background-color: green;
+    text-align: center;
+    background-color: rgb(70, 106, 224);
     color: white;
     border-radius: 10px;
     padding: 10px;

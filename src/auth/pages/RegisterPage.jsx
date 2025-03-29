@@ -71,8 +71,13 @@ export const RegisterPage = () => {
     return(
         <>
 
+
+        <nav className="navegacionBody" >
+        <Link className="InicioNavBarBody" to={"/inicio"}> Inicio  </Link>
+        </nav>
+
         <form onSubmit = {handleSubmit} className="logForm">
-        <h1 className="textoForm">Resgistrarse</h1>
+        <h1 className="textoForm">Registrarse</h1>
 
         <input className="inputForm"
         type="text"
@@ -94,7 +99,7 @@ export const RegisterPage = () => {
         required/>
         <button className="buttonForm" type="submit"
         >Registrarse</button>
-        <Link to = {"/"} className="btnPagina"  >Página de inicio</Link>
+        <Link to = {"/logIn"} className="btnPagina"  >Página de inicio</Link>
         </form>
     
         {error && <p className="centerText" style={{ color: 'red' }}>{error}</p>}

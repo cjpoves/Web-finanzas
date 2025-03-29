@@ -3,13 +3,15 @@
 }
 
 body{
-  background-color: #242424;
+  
+  background: radial-gradient(circle, #28263B, #151724);
 }
 button{
   border-radius: 10px;
   border: none;
   padding: 10px;
   cursor:pointer;
+  background-color: #343DE9;
 }
 button:hover{
   border: solid, black;
@@ -27,10 +29,6 @@ h1, h2, h3, h4, button, p {
   color: white;
 }
 
-button{
-  background-color: #343DE9;
-}
-
 ul, li {
   padding: 0;
 }
@@ -38,4 +36,12 @@ ul, li {
 .FormIngresoGastos__Contenedor{
 display: grid;
 gap: 40px;
+}
+
+.logForm{
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 20px;
 }

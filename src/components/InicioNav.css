@@ -1,4 +1,4 @@
-.navegacion {
+.navegacionBody {
     border: 2px solid #363636;
     padding: 10px;
     display: flex;
@@ -10,20 +10,9 @@
     margin-right: 30px;
 }
 
-.btnLogOut{
-    cursor: pointer;
-    color: white;
+.InicioNavBarBody{
     background-color: #1F2F4C;
-    padding: 20px;
-
-}
-
-.btnLogOut:hover{
-    background-color: red;
-}
-
-.InicioNavBar{
-    background-color: #1F2F4C;
+    padding: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;

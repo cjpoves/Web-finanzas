@@ -15,7 +15,6 @@ export const Dashboard = () => {
     return(
         <>
         <NavBar/>
-        <h1 className="centerText">Ingresos</h1>
         <div className="FormIngresoGastos__Contenedor">
         <FormIngresos/>
         <FormGastos/>

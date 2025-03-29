@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useFetchData } from "../auth/hooks/useFetchData";
 import { NavBar } from "../components/NavBar"
 import { ObtenerGastos } from "../components/ObtenerGastos";
+import { GastosAño } from "../components/GastosAño";
 
 export const ExpensesPage = () => {
 
@@ -17,6 +18,7 @@ export const ExpensesPage = () => {
         <NavBar/>
         <h1 className="centerText">Gastos</h1>
         <ObtenerGastos/>
+        <GastosAño/>
         </>
     )
 }

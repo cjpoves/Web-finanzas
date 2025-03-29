@@ -1,0 +1,19 @@
+.ContenedorSecciones{
+    margin-top: 40px;
+    display: grid;
+    justify-content: center;
+    gap: 50px;
+
+}
+.Secciones{
+    background-color: #1F2F4C;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5em;
+}
+.Secciones:hover{
+    background-color: #c0bfbf;
+}

@@ -1,35 +1,46 @@
 import { useEffect, useState } from "react";
 import "./ObtenerIngresos.css"
-import { GastosMap } from "./GastosMap";
-import { PieChart, Pie, Cell, ResponsiveContainer, Label, Legend } from 'recharts'; // Importo libreria para hacer graficos
+import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-export const ObtenerGastos = () => {
-    const [year,setYear] = useState("2025")
-    const [month,setMonth] = useState("01")
+
+export const GastosAño = () => {
+    const [year,setYear] = useState("")
     const [gastos, setGastos] = useState([]);
     const [mensaje,setMensaje] = useState("");
 
-    // Estado para los datos de gasto del grafico
-        const [chartData, setChartData] = useState([
-            { descripcion: "Alquiler", cantidad: 400 },
-            { descripcion: "Luz", cantidad: 60 },
-            { descripcion: "Comida", cantidad: 200 },
+    // Estado para los datos del año del grafico
+        const [chartData, setChartData] = useState( [
+            { descripcion: "Enero", cantidad: 400 },
+            { descripcion: "Febrero", cantidad: 360 },
+            { descripcion: "Marzo", cantidad: 200 },
         ]);
 
-        //Actualiza el grafico ante cada consulta
-            useEffect(() => {
-                if (gastos.length > 0) {
-                    const nuevosDatos = gastos.map((gasto) => {
-                        const { cantidad, descripcion } = gasto; // Extraer valores
-                        return {
-                            descripcion: descripcion || "Sin descripción",
-                            cantidad: parseFloat(cantidad) || 0, //Tranforma a numero ya que viene como string en la base de datos
-                        };
-                    });
-                    setChartData(nuevosDatos);
-                }
-            }, [gastos]); // Se ejecuta cada vez que cambian los gastos
-
+        //Renderiza grafico en funcion del año consultado
+        useEffect(() => {
+            if (gastos.length > 0) {
+                // Objeto auxiliar para agrupar ingresos por mes
+                const gastosPorMes = {};
+        
+                gastos.forEach(({ cantidad, fecha }) => {
+                    const mes = new Date(fecha).getMonth(); // Extraer número de mes (0 = Enero, 1 = Febrero)
+                    gastosPorMes[mes] = (gastosPorMes[mes] || 0) + parseFloat(cantidad);
+                });
+        
+                // Nombres de los meses
+                const nombresMeses = [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                ];
+        
+                // Convertir el objeto en un array con el formato esperado
+                const nuevosDatos = Object.keys(gastosPorMes).map((mes) => ({
+                    descripcion: nombresMeses[mes], 
+                    cantidad: gastosPorMes[mes]   
+                }));
+        
+                setChartData(nuevosDatos);
+            }
+        }, [gastos]);
 
          //Funcion que consulta endpoint consultar gastos
    const handleSubmit = async (e) => {
@@ -37,14 +48,14 @@ export const ObtenerGastos = () => {
     setGastos([])
     e.preventDefault();
 
-    if (!month || !year) {
-        setMensaje("Por favor, selecciona un mes y un año.");
+    if ( !year) {
+        setMensaje("Por favor, selecciona un año.");
         return;
     }
     const token = localStorage.getItem("token");
 
     try {
-        const response = await fetch(`http://localhost:3000/expenses/month?month=${month}&year=${year}`, {
+        const response = await fetch(`http://localhost:3000/expenses/year?year=${year}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -68,46 +79,35 @@ export const ObtenerGastos = () => {
         console.error("Error al obtener gastos:", error);
         setMensaje("Error en el servidor");
     }
-
+    console.log(gastos)
 
     setTimeout(() => {
         setMensaje('')
    }, 2000)
    }
 
-       // Funcion que se pasa a componente hijo para actualizar ingresos si se borra alguno
-       const handleDelete = (id) => {
-        setGastos(gastos.filter((gasto) => gasto.id !== id));
-    };
 
     return(
         <>
         
-            {/* Grafico de donut libreria Recharts */}
-            <div className="ag-chart-container">
-                <ResponsiveContainer width="100%" height={400}>
-                    <PieChart>
-                        <Pie
-                            data={chartData}
-                            dataKey="cantidad"
-                            nameKey="descripcion"
-                            innerRadius="40%" 
-                            outerRadius="80%" 
-                            fill="#8884d8"
-                            label
-                        >
-                            {chartData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={["#D10808", "#E87609", "#F5D940", "#FFBB78"][index % 4]} />
-                            ))}
-                        </Pie>
-                        <Legend />
-                    </PieChart>
-                </ResponsiveContainer>
-            </div>
+        <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <XAxis dataKey="descripcion" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="cantidad">
+            {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={["#D10808", "#E87609", "#F5D940", "#FFBB78"][index % 4]} />
+            ))}
+        </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+
+      {mensaje && <p className="centerText">{mensaje}</p>}
 
                 
                 <form onSubmit = {handleSubmit} className="logForm">
-                <h3 className="textoForm">Obtener Gastos Mes</h3>
+                <h3 className="textoForm">Obtener Gastos Año</h3>
 
                 <div className="ingresosSelect">
                 <select id="year" onChange={(e) => setYear(e.target.value)}
@@ -160,38 +160,12 @@ export const ObtenerGastos = () => {
                                 <option value="1981">1981</option>
                                 <option value="1980">1980</option>
                             </select>
-        
-                            <select id="month" onChange={(e) => setMonth(e.target.value)}
-                             value={month} class="inputForm">
-                                <option value="">--Selecciona mes--</option>
-                                <option value="01">Enero</option>
-                                <option value="02">Febrero</option>
-                                <option value="03">Marzo</option>
-                                <option value="04">Abril</option>
-                                <option value="05">Mayo</option>
-                                <option value="06">Junio</option>
-                                <option value="07">Julio</option>
-                                <option value="08">Agosto</option>
-                                <option value="09">Septiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
-                            </select>
                 </div>
                 
                 <button className="buttonFormIngresos" type="submit"
                 >Obtener Gastos</button>
                 </form>
         
-                {mensaje && <p className="centerText">{mensaje}</p>}
-        
-        
-                <ul className="IngresosContainer">
-                {gastos.map((gasto) => (
-                                <GastosMap key={gasto.id} gasto={gasto} onDelete={handleDelete}/>
-                        ))}
-        
-                </ul>
         </>
     )
 }

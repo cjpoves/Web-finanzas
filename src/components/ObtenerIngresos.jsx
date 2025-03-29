@@ -109,7 +109,7 @@ export const ObtenerIngresos = () => {
             </div>
 
         <form onSubmit = {handleSubmit} className="logForm">
-        <h3 className="textoForm">Obtener ingresos</h3>
+        <h3 className="textoForm">Obtener Ingresos Mes</h3>
 
 
         <div className="ingresosSelect">

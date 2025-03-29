@@ -31,7 +31,7 @@ export const LogInPage = () => {
                 setMensaje(data.message);
             }
             //Navega a pagina income si todo es exitoso
-            navigate("/incomePage");
+            navigate("/home");
         } catch (error) {
             console.error("Error en el login:", error);
             setMensaje("Error en el servidor");
@@ -47,6 +47,11 @@ export const LogInPage = () => {
     }
     return(
         <>
+
+        <nav className="navegacionBody" >
+        <Link className="InicioNavBarBody" to={"/"}> Inicio  </Link>
+        </nav>
+
         
         <form onSubmit={handleSubmit} className="logForm">
             <h1 className="textoForm">Iniciar Sesión</h1>
@@ -73,6 +78,8 @@ export const LogInPage = () => {
         </form>
       
         {mensaje && <p className="centerText" style={{ color: 'green' }}>{mensaje}</p>}
+
+
 
         </>
     )

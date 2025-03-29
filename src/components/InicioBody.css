@@ -1,0 +1,110 @@
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+    text-align: center;
+    margin-top: 40px;
+}
+    
+.div1 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    background-image: linear-gradient(to right, rgba(21, 23, 36, 0.8), rgba(65, 76, 122, 0.5));
+    border: 2px solid #363636;
+    border-radius: 20px;
+    min-height:300px;
+
+}
+
+.div2 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #4071ad, rgba(65, 76, 122, 0.5));
+
+    border: 3px solid #363636;
+    display: flex;
+    align-items: center;
+
+}
+
+.div3 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 2;
+    grid-row-start: 3;
+    background-image: linear-gradient(to right, #351A25, rgba(65, 76, 122, 0.5));
+    border-radius: 20px;
+    border: 3px solid #363636;
+}
+
+.div4 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    background-image: linear-gradient(to right, #142B48, rgba(65, 76, 122, 0.5));
+
+    border-radius: 20px;
+}
+
+.div5 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    grid-row-start: 5;
+    background-image: linear-gradient(to right, #351A25, rgba(65, 76, 122, 0.5));
+    
+
+    border-radius: 20px;
+}
+
+@media(max-width: 750px) {
+    
+    
+
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        gap: 8px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+        
+    .div1 {
+        grid-column: span 3 / span 3;
+        grid-row: span 2 / span 2;
+    }
+    
+    .div2 {
+        grid-column: span 3 / span 3;
+        grid-row-start: 3;
+    }
+    
+    .div3 {
+        grid-column: span 3 / span 3;
+        grid-column-start: 1;
+        grid-row-start: 7;
+    }
+    
+    .div4 {
+        grid-column: span 3 / span 3;
+        grid-row: span 2 / span 2;
+        grid-column-start: 1;
+        grid-row-start: 5;
+    }
+    
+    .div5 {
+        grid-column: span 3 / span 3;
+        grid-row: span 2 / span 2;
+        grid-row-start: 9;
+    }
+ 
+        
+        
+}
+        
+        
